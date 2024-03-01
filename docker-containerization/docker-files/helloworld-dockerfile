@@ -1,0 +1,5 @@
+FROM ubuntu
+WORKDIR /sam/welcome
+ADD docker-containerization/docker-resources/welcome.txt welcome.txt
+CMD cat welcome.txt
+#ENTRYPOINT cat welcome.txt

@@ -1,0 +1,4 @@
+FROM ubuntu-java-image
+WORKDIR /user/sam/table
+COPY docker-containerization/docker-resources/Table.java Table.java
+CMD javac Table.java && java Table
