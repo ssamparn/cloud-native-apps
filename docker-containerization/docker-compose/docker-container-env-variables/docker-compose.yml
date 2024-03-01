@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  ubuntu:
+    image: ubuntu
+    command: "env"
+    environment:
+      - app.name=product-service
+      - service.url=google.com
+      - input=56
+#    providing env_file is an alternative way to provide environment variables
+    env_file:
+      - app.env
