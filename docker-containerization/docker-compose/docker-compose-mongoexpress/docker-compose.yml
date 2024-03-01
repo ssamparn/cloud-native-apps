@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+  # Go through "Initializing a fresh instance" in mongo official page.
+
+  # If mongo express does not work, then use Robo 3T instead which is already downloaded.
+  mongo-db-admin:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword
+      ME_CONFIG_MONGODB_SERVER: mongodb
