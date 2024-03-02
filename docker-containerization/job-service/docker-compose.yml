@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "${HOST_PORT:-27017}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./src/test/resources/data:/docker-entrypoint-initdb.d
+
+#  job-service:
+#    build: .
+#    image: job-service
+#    depends_on:
+#      - mongodb
+#    ports:
+#      - "8080:8080"
+#    profiles:
+#      - app
+#    environment:
+#      spring.data.mongodb.uri: "mongodb://root:rootpassword@mongodb:27017/job"
+

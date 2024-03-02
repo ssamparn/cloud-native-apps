@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class JobMapper {
 
-    public static JobDto toDto(Job entity) {
+    public JobDto toDto(Job entity) {
         JobDto dto = new JobDto();
         BeanUtils.copyProperties(entity, dto);
         return dto;
     }
 
-    public static Job toEntity(JobDto dto) {
+    public Job toEntity(JobDto dto) {
         Job entity = new Job();
         BeanUtils.copyProperties(dto, entity);
         return entity;
