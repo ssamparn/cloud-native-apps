@@ -6,15 +6,15 @@ services:
     ports:
       - "${HOST_PORT:-27017}:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: job_user
-      MONGO_INITDB_ROOT_PASSWORD: job_password
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
     volumes:
       - ./src/test/resources/data:/docker-entrypoint-initdb.d
     networks:
-      - job-service-network
+      - candidate-service-network
 
   job-service:
-    image: ssamantr/job-service:1.0.0
+    image: ssamantr/candidate-service:1.0.0
     depends_on:
       - mongodb
     ports:
@@ -22,9 +22,9 @@ services:
     profiles:
       - app
     environment:
-      spring.data.mongodb.uri: "mongodb://job_user:job_password@mongodb:27017/job"
+      spring.data.mongodb.uri: "mongodb://candidate_user:candidate_password@mongodb:27017/candidate"
     networks:
-      - job-service-network
+      - candidate-service-network
 
 networks:
-  job-service-network:
+  candidate-service-network:

@@ -1,4 +1,4 @@
-package com.spring.dockerize.jobservice.entity;
+package com.spring.dockerize.candidateservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,13 +12,9 @@ import java.util.Set;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "create")
-public class Job {
-
+public class Candidate {
     @Id
     private String id;
-    private String description;
-    private String company;
+    private String name;
     private Set<String> skills;
-    private Integer salary;
-    private Boolean isRemote;
 }

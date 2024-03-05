@@ -16,17 +16,17 @@ $ docker compose up
 $ docker compose --profile=<profile-name> up 
 $ docker compose --profile=app up 
 ```
-> Both `mongodb` and `job-service` service will be up.
+> Both `mongodb` and `candidate-service` service will be up.
 > Note: Docker profile works like a spring profile
 
-### Build Job Service Application and Create Image
+### Build Candidate Service Application and Create Image
 ```bash
 $ mvn clean install
 ```
 
 ### Create a docker network
 ```bash
-$ docker network create job-service-network
+$ docker network create candidate-service-network
 ```
 
 ### Check the created docker network
@@ -34,10 +34,10 @@ $ docker network create job-service-network
 $ docker network ls
 ```
 
-### Run Job Service docker image in the network created
+### Run Candidate Service docker image in the network created
 > Even if you create a network with a particular name, the docker will append a prefix to the network name
 ```bash
-$ docker run -p 8080:8080 --network=job-service_job-service-network --env spring.data.mongodb.uri="mongodb://job_user:job_password@mongodb:27017/job" ssamantr/job-service:1.0.0
+$ docker run -p 8080:8080 --network=candidate-service_candidate-service-network --env spring.data.mongodb.uri="mongodb://candidate_user:candidate_password@mongodb:27017/candidate" ssamantr/candidate-service:1.0.0
 ```
 
 ### Run docker compose
