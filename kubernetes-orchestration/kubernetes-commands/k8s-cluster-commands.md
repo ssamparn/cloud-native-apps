@@ -13,7 +13,7 @@ $ Do a rm -rf ~/.kube
 
 #### Create a multi-node cluster using kind
 ```bash
-$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/create-cluster/create-cluster.yaml
+$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster.yaml
 
 $ docker ps
 $ docker network ls
