@@ -82,3 +82,23 @@ $ kubectl port-forward my-pod 8080:80
 $ kubectl logs <pod-name>
 $ kubectl logs my-pod
 ```
+
+#### View logs of a particular container of a pod incase the pod is a multi-container pod
+```bash
+$ kubectl logs <pod-name> -c <container-name>
+$ kubectl logs my-pod -c nginx
+```
+
+#### Access a particular pod like `docker exec`
+```bash
+$ kubectl exec -it <pod-name> -- <command>
+$ kubectl exec -it pod-1 -- bash
+```
+
+#### Access a particular container of a multi-container pod like `docker exec`
+```bash
+$ kubectl exec -it <pod-name> -c <container-name> -- <command>
+$ kubectl exec -it my-pod -c nginx -- bash
+$ kubectl exec -it my-pod -c nginx-helper -- bash
+```
+
