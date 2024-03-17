@@ -71,8 +71,14 @@ $ kubectl get pod pod-1 -o json
 ```
 > `o` stands for `output`
 
-#### Port Forwarding of pod
+#### Port Forwarding of pod: `pod-port.yaml`
 ```bash
 $ kubectl port-forward <pod-name> <host-port:container-port>
 $ kubectl port-forward my-pod 8080:80
+```
+
+#### View the logs of a pod: `pod-args.yaml`
+```bash
+$ kubectl logs <pod-name>
+$ kubectl logs my-pod
 ```
