@@ -2,14 +2,20 @@
 
 > Prerequisite: Before creating a k8s pod, we assume k8s cluster is created.
 
+#### Get all the k8s Resources:
+```bash
+$ kubectl get all
+```
+
 #### Get all the pods
 ```bash
+$ kubectl get <kind>
 $ kubectl get pods
 ```
 
 #### Get a specific pod
 ```bash
-$ kubectl get pod <pod-name>
+$ kubectl get <kind> <resource-name>
 $ kubectl get pod pod-1
 ```
 
