@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-web-service
+spec:
+  selector:
+    app-label: my-app
+  ports:
+    - protocol: TCP
+      port: 8080 # port on which the client will make a call to the service.
+      targetPort: 80 # target port is nothing but a container port.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  selector:
+    matchLabels:
+      app-label: my-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app-label: my-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
