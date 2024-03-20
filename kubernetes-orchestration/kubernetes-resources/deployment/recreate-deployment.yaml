@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service-deployment
+  annotations:
+#        kubernetes.io/change-cause: "deploying v1"
+        kubernetes.io/change-cause: "deploying v2"
+spec:
+  minReadySeconds: 10
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: order-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app-name: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: vinsdocker/k8s-app:v2
+          ports:
+            - name: "app-port"
+              containerPort: 80

@@ -11,6 +11,11 @@ $ docker network ls
 $ Do a rm -rf ~/.kube
 ```
 
+#### Watch a Kubernetes Cluster:
+```bash
+$ watch -t -x kubectl get all
+```
+
 #### Create a multi-node cluster using kind
 ```bash
 $ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster.yaml
