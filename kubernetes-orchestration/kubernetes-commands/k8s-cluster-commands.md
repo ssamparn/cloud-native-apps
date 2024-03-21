@@ -64,3 +64,7 @@ $ kind delete cluster --name=local-cluster
 $ docker ps -a
 ```
 
+#### Create a multi-node cluster using kind with port-mapping
+```bash
+$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster-with-port-mapping.yaml 
+```

@@ -24,3 +24,18 @@ $ kubectl port-forward deployment.apps/application-assignment 8080:8080
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/redis-assignment.yaml
 ```
 
+#### Node Port Service Creation `service-node-port.yaml`
+```bash
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/service/service-node-port.yaml
+$ curl http://localhost:30001
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/service-node-port.yaml
+```
+
+#### Rolling Update Service Demo `rolling-update-service.yaml`
+```bash
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/service/rolling-update-service.yaml
+$ kubectl exec -it pod/demo-pod -- bash
+$ curl http://order-service:8080
+$ for i in {1..10000}; do curl -s http://order-service:8080 | grep -o "<title>[^<]*" | tail -c+8; done
+$ kubectl rollout undo deploy/order-service-deployment
+```
