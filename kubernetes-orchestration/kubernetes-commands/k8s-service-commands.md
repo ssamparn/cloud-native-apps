@@ -38,4 +38,5 @@ $ kubectl exec -it pod/demo-pod -- bash
 $ curl http://order-service:8080
 $ for i in {1..10000}; do curl -s http://order-service:8080 | grep -o "<title>[^<]*" | tail -c+8; done
 $ kubectl rollout undo deploy/order-service-deployment
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/rolling-update-service.yaml
 ```
