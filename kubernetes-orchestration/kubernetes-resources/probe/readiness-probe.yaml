@@ -1,5 +1,4 @@
-# vinsdocker/k8s-probe-demo uses nginx
-# nginx will start after 10 seconds
+# vinsdocker/k8s-probe-demo uses nginx which starts after 10 seconds
 apiVersion: v1
 kind: Pod
 metadata:

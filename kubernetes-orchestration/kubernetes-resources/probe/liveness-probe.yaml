@@ -1,5 +1,4 @@
-# vinsdocker/k8s-probe-demo uses nginx
-# nginx will start after 10 seconds
+# vinsdocker/k8s-probe-demo uses nginx which starts after 10 seconds to create a failure in start up
 apiVersion: v1
 kind: Pod
 metadata:
@@ -7,7 +6,7 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 1
   containers:
-    - name: probe-demo
+    - name: liveness-probe-demo
       image: vinsdocker/k8s-probe-demo
       startupProbe:
         httpGet:
