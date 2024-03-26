@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Probes: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s startup probe for a pod or deployment, we assume a k8s cluster is created already.
 

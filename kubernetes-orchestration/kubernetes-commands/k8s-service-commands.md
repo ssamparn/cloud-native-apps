@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Services: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s Service, we assume a k8s cluster and k8s deployment with some pods in it are created already.
 

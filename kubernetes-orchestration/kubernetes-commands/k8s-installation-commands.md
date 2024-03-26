@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Installation: Commands Cheatsheet
 
 > [kubectl installation](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#install-with-homebrew-on-macos)
 

@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Pods: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s pod, we assume k8s cluster is created.
 

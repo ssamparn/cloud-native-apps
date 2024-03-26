@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Deployments: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s Deployment, we assume k8s cluster is created.
 

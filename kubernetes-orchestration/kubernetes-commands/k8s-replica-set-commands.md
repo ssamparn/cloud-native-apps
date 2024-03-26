@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes ReplicaSet: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s replicaSet, we assume k8s cluster is created.
 

@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Cluster: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s cluster, we assume kubectl and kind is installed.
 > Note:  Before creating a multi-node cluster make sure you don't have any running containers. 

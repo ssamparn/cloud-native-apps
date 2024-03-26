@@ -1,4 +1,4 @@
-## Kubernetes Commands Cheatsheet
+## Kubernetes Namespace: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s namespace, we assume a k8s cluster is created already.
 
