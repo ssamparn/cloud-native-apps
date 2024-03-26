@@ -1,0 +1,38 @@
+# To run the actual mongo express instance, we are creating a k8s deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongoexpress-deployment
+spec:
+  selector:
+    matchLabels:
+      app-label: mongoexpress-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app-label: mongoexpress-deployment
+    spec:
+      containers:
+        - name: mongo-express
+          image: mongo-express:1.0.0-alpha.4
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - secretRef:
+                name: mongo-express-secret
+          env:
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: mongodb-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongoexpress-service
+spec:
+  selector:
+    app-label: mongoexpress-deployment
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081

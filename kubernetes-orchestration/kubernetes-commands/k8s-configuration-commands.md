@@ -81,3 +81,18 @@ $ ls
 $ cat private.key
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/configuration/inject-secret-as-file.yaml
 ```
+
+#### Assignment
+```bash
+$ docker compose -f kubernetes-orchestration/kubernetes-resources/configuration/assignment/docker-compose.yaml up
+$ docker compose -f kubernetes-orchestration/kubernetes-resources/configuration/assignment/docker-compose.yaml down
+$ echo -n root | base64
+$ echo -n rootpassword | base64
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/configuration/solution/.
+$ kubectl port-forward service/mongoexpress-service 8081:8081
+$ curl localhost:8081
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/configuration/solution/.
+```
+
+> If you want to decode a base64 string run `$ echo "base64 String" | base64 --decode`
+> e.g: echo "ZGV2b3BzY3ViZQo=" | base64 --decode
