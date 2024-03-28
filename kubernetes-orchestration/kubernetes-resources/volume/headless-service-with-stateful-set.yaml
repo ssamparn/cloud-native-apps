@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-stateful-set
+spec:
+  selector:
+    matchLabels:
+      app-label: my-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app-label: my-app
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: nginx
+          image: vinsdocker/nginx-gke
+  serviceName: my-service # headless service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: ClusterIP # Default Type.
+  clusterIP: None # config to make this a headless service
+  selector:
+    app-label: my-app
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: demo
+      image: vinsdocker/util
+      args:
+        - "sleep"
+        - "3600"
