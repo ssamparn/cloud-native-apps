@@ -121,3 +121,17 @@ $ curl localhost:8082
 $ kubectl delete pvc --all
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/volume/dynamic-persistent-volume-claim.yaml
 ```
+
+#### Assignment
+```bash
+$ kubectl delete pvc --all
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/volume/solution/.
+$ kubectl get pvc
+$ kubectl get pv
+$ kubectl port-forward service/mongoexpress-service 8080:8081
+$ curl localhost:8080
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/volume/solution/.
+$ kubectl get pvc
+$ kubectl get pv
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/volume/solution/.
+```
