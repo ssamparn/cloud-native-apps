@@ -66,5 +66,7 @@ $ docker ps -a
 
 #### Create a multi-node cluster using kind with port-mapping
 ```bash
-$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster-with-port-mapping.yaml 
+$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster-with-port-mapping.yaml
+$ docker ps
+$ kubectl get node
 ```

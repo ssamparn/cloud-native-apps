@@ -1,4 +1,4 @@
-## Kubernetes Configuration Commands Cheatsheet
+## Kubernetes Configuration: Commands Cheatsheet
 
 > Prerequisite: Before creating a k8s configuration, we assume a k8s cluster is created already.
 
