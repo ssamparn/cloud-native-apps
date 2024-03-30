@@ -3,6 +3,7 @@
 ```bash
 $ docker compose up <service-name>
 $ docker compose up mongodb
+$ docker compose -f docker-containerization/candidate-service/docker-compose.yml up mongodb
 ```
 
 ### Run a particular service from docker compose file. Then create a docker profile
@@ -15,6 +16,8 @@ $ docker compose up
 ```bash
 $ docker compose --profile=<profile-name> up 
 $ docker compose --profile=app up 
+$ docker compose -f docker-containerization/candidate-service/docker-compose.yml --profile=app up 
+$ docker compose -f docker-containerization/candidate-service/docker-compose.yml --profile=app down 
 ```
 > Both `mongodb` and `candidate-service` service will be up.
 > Note: Docker profile works like a spring profile
@@ -42,5 +45,5 @@ $ docker run -p 8080:8080 --network=candidate-service_candidate-service-network 
 
 ### Run docker compose
 ```bash
-$ docker compose -f docker-containerization/job-service/docker-compose.yml up
+$ docker compose -f docker-containerization/candidate-service/docker-compose.yml up
 ```
