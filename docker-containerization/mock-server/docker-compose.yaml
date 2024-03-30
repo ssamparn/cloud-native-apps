@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  mock-service:
+    image: mockserver/mockserver
+    ports:
+      - "1080:1080"
+    environment:
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/init.json
+    volumes:
+      - "./mock-response/02-init.json:/config/init.json"
