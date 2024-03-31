@@ -14,7 +14,7 @@ public abstract class BaseTest {
 
     private static final int MONGO_PORT = 27017;
     private static final String INIT_JS = "/docker-entrypoint-initdb.d/init.js";
-    private static final String MONGO_URI_FORMAT = "mongodb://job_user:job_password@%s:%s/job";
+    private static final String MONGO_URI_FORMAT = "mongodb://root:rootpassword@%s:%s/job";
 
     @Container
     private static final GenericContainer mongoContainer = new GenericContainer(DockerImageName.parse("mongo"))
