@@ -13,6 +13,7 @@ public class CandidateMapper {
     public CandidateDto toDto(Candidate entity) {
         CandidateDto dto = new CandidateDto();
         BeanUtils.copyProperties(entity, dto);
+        dto.setHostName(AppUtil.getHostname());
         return dto;
     }
 

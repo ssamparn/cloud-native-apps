@@ -45,7 +45,7 @@ public class JobServiceIT extends BaseTest {
 
 	@Test
 	public void postJobTest() {
-		JobDto jobPayload = JobDto.create(null, "k8s engineer", "google", Set.of("k8s"), 200000, true);
+		JobDto jobPayload = JobDto.create(null, "k8s engineer", "google", Set.of("k8s"), 200000, true,  null);
 
 		this.client.post()
 				.uri("/jobs/")
