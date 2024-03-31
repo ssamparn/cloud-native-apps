@@ -3,8 +3,8 @@ db = db.getSiblingDB('candidate');
 
 // create user
 db.createUser({
-    user: 'candidate_user',
-    pwd: 'candidate_password',
+    user: 'root',
+    pwd: 'rootpassword',
     roles:[
         {
             role: 'readWrite',

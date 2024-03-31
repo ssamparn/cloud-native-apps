@@ -6,8 +6,8 @@ services:
     ports:
       - "${MONGO_DB_PORT:-27017}:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: candidate_user
-      MONGO_INITDB_ROOT_PASSWORD: candidate_password
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
     volumes:
       - "./src/test/resources/data:/docker-entrypoint-initdb.d"
     networks:
@@ -22,7 +22,7 @@ services:
     profiles:
       - app
     environment:
-      spring.data.mongodb.uri: "mongodb://candidate_user:candidate_password@mongodb:27017/candidate"
+      spring.data.mongodb.uri: "mongodb://root:rootpassword@mongodb:27017/candidate"
     networks:
       - candidate-service-network
 

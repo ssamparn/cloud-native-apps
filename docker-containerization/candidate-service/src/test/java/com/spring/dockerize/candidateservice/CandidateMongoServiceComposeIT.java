@@ -12,7 +12,7 @@ import java.util.Set;
 
 @SpringBootTest
 @AutoConfigureWebTestClient
-public class CandidateMongoServiceIT extends BaseTest {
+public class CandidateMongoServiceComposeIT extends BaseTest {
 
     @Autowired
     private WebTestClient testClient;
