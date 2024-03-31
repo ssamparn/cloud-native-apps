@@ -13,7 +13,7 @@ import java.io.File;
 public abstract class BaseTest {
 
     private static final int MONGO_PORT = 27017;
-    private static final String MONGO = "mongo";
+    private static final String MONGO = "mongodb";
     private static final String MONGO_URI_FORMAT = "mongodb://job_user:job_password@%s:%s/job";
 
     @ClassRule

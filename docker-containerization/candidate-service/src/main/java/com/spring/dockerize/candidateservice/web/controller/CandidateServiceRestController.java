@@ -1,5 +1,6 @@
 package com.spring.dockerize.candidateservice.web.controller;
 
+import com.spring.dockerize.candidateservice.dto.CandidateDetailsDto;
 import com.spring.dockerize.candidateservice.dto.CandidateDto;
 import com.spring.dockerize.candidateservice.service.CandidateService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class CandidateServiceRestController {
     }
 
     @GetMapping("/{candidateId}")
-    public Mono<CandidateDto> getCandidate(@PathVariable String candidateId) {
+    public Mono<CandidateDetailsDto> getCandidate(@PathVariable String candidateId) {
         return this.candidateService.getCandidate(candidateId);
     }
 

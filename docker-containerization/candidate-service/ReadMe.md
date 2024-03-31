@@ -16,8 +16,8 @@ $ docker compose up
 ```bash
 $ docker compose --profile=<profile-name> up 
 $ docker compose --profile=app up 
-$ docker compose -f docker-containerization/candidate-service/docker-compose.yml --profile=app up 
-$ docker compose -f docker-containerization/candidate-service/docker-compose.yml --profile=app down 
+$ docker compose -f docker-containerization/candidate-service/docker-compose.yml --profile=app up
+$ docker compose -f docker-containerization/candidate-service/docker-compose.yml --profile=app down
 ```
 > Both `mongodb` and `candidate-service` service will be up.
 > Note: Docker profile works like a spring profile

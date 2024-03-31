@@ -1,6 +1,6 @@
 package com.spring.dockerize.candidateservice;
 
-import com.spring.dockerize.candidateservice.generic.BaseTest;
+import com.spring.dockerize.candidateservice.compose.BaseTest;
 import com.spring.dockerize.candidateservice.dto.CandidateDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.Set;
 
 @SpringBootTest
 @AutoConfigureWebTestClient
-public class CandidateServiceIT extends BaseTest {
+public class CandidateMongoServiceIT extends BaseTest {
 
     @Autowired
     private WebTestClient testClient;
@@ -36,12 +36,13 @@ public class CandidateServiceIT extends BaseTest {
                 .expectBody()
                 .jsonPath("$.id").isEqualTo(1)
                 .jsonPath("$.name").isEqualTo("sam")
-                .jsonPath("$.skills.size()").isEqualTo(2);
+                .jsonPath("$.skills.size()").isEqualTo(2)
+                .jsonPath("$.recommendedJobs.size()").isEqualTo(2);
     }
 
     @Test
     void postCandidateTest(){
-        CandidateDto dto = CandidateDto.create(null, "dr.dre", Set.of("k8s"));
+        CandidateDto dto = CandidateDto.create(null, "dr.dre", Set.of("k8s"), null);
 
         this.testClient.post()
                 .uri("/candidate/")
@@ -62,7 +63,8 @@ public class CandidateServiceIT extends BaseTest {
                 .expectBody()
                 .jsonPath("$.id").isEqualTo(2)
                 .jsonPath("$.name").isEqualTo("jake")
-                .jsonPath("$.skills.size()").isEqualTo(1);
+                .jsonPath("$.skills.size()").isEqualTo(1)
+                .jsonPath("$.recommendedJobs").isEmpty();
     }
 
     @Test

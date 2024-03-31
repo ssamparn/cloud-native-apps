@@ -4,16 +4,16 @@ services:
   mongodb:
     image: mongo
     ports:
-      - "${HOST_PORT:-27017}:27017"
+      - "${MONGO_DB_PORT:-27017}:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: candidate_user
       MONGO_INITDB_ROOT_PASSWORD: candidate_password
     volumes:
-      - ./src/test/resources/data:/docker-entrypoint-initdb.d
+      - "./src/test/resources/data:/docker-entrypoint-initdb.d"
     networks:
       - candidate-service-network
 
-  job-service:
+  candidate-service:
     image: ssamantr/candidate-service:1.0.0
     depends_on:
       - mongodb
@@ -23,6 +23,17 @@ services:
       - app
     environment:
       spring.data.mongodb.uri: "mongodb://candidate_user:candidate_password@mongodb:27017/candidate"
+    networks:
+      - candidate-service-network
+
+  job-mock-service:
+    image: mockserver/mockserver
+    ports:
+      - "${MOCK_SERVER_PORT:-1080}:1080"
+    environment:
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/init.json
+    volumes:
+      - "./src/test/resources/data/job-init.json:/config/init.json"
     networks:
       - candidate-service-network
 
