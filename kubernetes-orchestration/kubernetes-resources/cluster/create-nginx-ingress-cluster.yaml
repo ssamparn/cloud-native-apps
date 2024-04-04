@@ -11,7 +11,7 @@ nodes:
             node-labels: "ingress-ready=true"
     extraPortMappings:
       - containerPort: 80
-        hostPort: 9090
+        hostPort: 7070
         protocol: TCP
       - containerPort: 31234
         hostPort: 31234

@@ -24,6 +24,20 @@ $ docker ps
 $ docker network ls
 ```
 
+#### Create a multi-node cluster using kind with port-mapping
+```bash
+$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster-with-port-mapping.yaml
+$ docker ps
+$ kubectl get node
+```
+
+#### Create a multi-node nginx ingress cluster using kind with port-mapping
+```bash
+$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-nginx-ingress-cluster.yaml
+$ docker ps
+$ kubectl get node
+```
+
 #### Check the configuration of the K8S cluster created by kind
 ```bash
 $ cat ~/.kube/config
@@ -62,18 +76,4 @@ $ kind get clusters
 $ kind delete cluster --name=<cluster-name>
 $ kind delete cluster --name=local-cluster
 $ docker ps -a
-```
-
-#### Create a multi-node cluster using kind with port-mapping
-```bash
-$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-cluster-with-port-mapping.yaml
-$ docker ps
-$ kubectl get node
-```
-
-#### Create a multi-node nginx ingress cluster using kind with port-mapping
-```bash
-$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-nginx-ingress-cluster.yaml
-$ docker ps
-$ kubectl get node
 ```

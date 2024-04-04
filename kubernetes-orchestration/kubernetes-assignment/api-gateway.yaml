@@ -1,22 +1,32 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dice
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /api/candidates
+          - path: /api/candidates/
             pathType: Prefix
             backend:
               service:
                 name: candidate-service
                 port:
                   number: 8080
-          - path: /api/jobs
+          - path: /api/jobs/
             pathType: Prefix
             backend:
               service:
                 name: job-service
                 port:
                   number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 9090
