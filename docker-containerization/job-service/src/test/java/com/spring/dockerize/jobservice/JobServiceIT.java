@@ -1,7 +1,7 @@
 package com.spring.dockerize.jobservice;
 
 import com.spring.dockerize.jobservice.dto.JobDto;
-import com.spring.dockerize.jobservice.compose.BaseTest;
+import com.spring.dockerize.jobservice.generic.BaseTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;

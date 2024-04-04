@@ -3,8 +3,8 @@ db = db.getSiblingDB('job');
 
 // create user
 db.createUser({
-    user: "root",
-    pwd: "rootpassword",
+    user: "job_user",
+    pwd: "job_password",
     roles:[
         {
             role: "readWrite",

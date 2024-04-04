@@ -70,3 +70,10 @@ $ kind create cluster --config kubernetes-orchestration/kubernetes-resources/clu
 $ docker ps
 $ kubectl get node
 ```
+
+#### Create a multi-node nginx ingress cluster using kind with port-mapping
+```bash
+$ kind create cluster --config kubernetes-orchestration/kubernetes-resources/cluster/create-nginx-ingress-cluster.yaml
+$ docker ps
+$ kubectl get node
+```

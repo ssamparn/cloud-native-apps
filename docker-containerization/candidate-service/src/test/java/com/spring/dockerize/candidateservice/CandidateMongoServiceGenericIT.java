@@ -30,7 +30,7 @@ public class CandidateMongoServiceGenericIT extends BaseTest {
     @Test
     void allCandidatesTest() {
         this.testClient.get()
-                .uri("/candidate/all")
+                .uri("/candidates/all")
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBody()
@@ -68,7 +68,7 @@ public class CandidateMongoServiceGenericIT extends BaseTest {
                         )));
 
         this.testClient.get()
-                .uri("/candidate/1")
+                .uri("/candidates/1")
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBody()
@@ -83,7 +83,7 @@ public class CandidateMongoServiceGenericIT extends BaseTest {
         CandidateDto dto = CandidateDto.create(null, "dr.dre", Set.of("k8s"), null);
 
         this.testClient.post()
-                .uri("/candidate/")
+                .uri("/candidates/")
                 .bodyValue(dto)
                 .exchange()
                 .expectStatus().is2xxSuccessful()
@@ -95,7 +95,7 @@ public class CandidateMongoServiceGenericIT extends BaseTest {
     @Test
     void jobServiceReturns4xx() {
         this.testClient.get()
-                .uri("/candidate/2")
+                .uri("/candidates/2")
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBody()
@@ -108,7 +108,7 @@ public class CandidateMongoServiceGenericIT extends BaseTest {
     @Test
     void jobServiceReturns5xx() {
         this.testClient.get()
-                .uri("/candidate/3")
+                .uri("/candidates/3")
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBody()

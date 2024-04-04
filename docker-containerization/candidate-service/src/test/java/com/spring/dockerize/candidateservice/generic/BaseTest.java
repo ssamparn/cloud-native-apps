@@ -18,7 +18,7 @@ public abstract class BaseTest {
     private static final String MONGO_INIT_JS = "/docker-entrypoint-initdb.d/init.js";
 
     private static final TestService MONGO_DB_SERVICE = TestService.create(
-            "mongodb", 27017, "0", "mongodb://root:rootpassword@%s:%s/candidate", "MONGO_DB_PORT"
+            "mongodb", 27017, "0", "mongodb://candidate_user:candidate_password@%s:%s/candidate", "MONGO_DB_PORT"
     );
 
     private static final TestService JOB_MOCK_SERVICE = TestService.create(

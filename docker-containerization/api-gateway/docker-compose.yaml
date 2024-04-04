@@ -14,7 +14,7 @@ services:
       - mongodb
       - job-service
     environment:
-      spring.data.mongodb.uri: "mongodb://root:rootpassword@mongodb:27017/candidate"
+      spring.data.mongodb.uri: "mongodb://candidate_user:candidate_password@mongodb:27017/candidate"
       job.service.url: "http://job-service:8080/jobs/"
 
   job-service:
@@ -24,7 +24,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      spring.data.mongodb.uri: "mongodb://root:rootpassword@mongodb:27017/job"
+      spring.data.mongodb.uri: "mongodb://job_user:job_password@mongodb:27017/job"
 
   nginx:
     image: nginx

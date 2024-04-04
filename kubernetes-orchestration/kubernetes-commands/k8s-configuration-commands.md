@@ -56,8 +56,8 @@ $ kubectl delete secret app-secret
 ```
 #### Create k8s secrets `simple-secret.yaml`
 ```bash
-$ echo sassaman | base64
-$ echo password | base64
+$ echo -n sassaman | base64
+$ echo -n password | base64
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/configuration/simple-secret.yaml
 $ kubectl get secrets -o yaml
 $ kubectl logs pod/my-pod
