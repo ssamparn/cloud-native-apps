@@ -1,0 +1,53 @@
+# To run the actual mongo instance, we are creating a k8s stateful set
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb-stateful-set
+spec:
+  serviceName: mongodb
+  selector:
+    matchLabels:
+      app-label: mongodb-stateful-set
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app-label: mongodb-stateful-set
+    spec:
+      containers:
+        - name: mongodb-stateful-set
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data-volume
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mongo-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-data-volume
+          configMap:
+            name: mongo-data-init-js
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-storage
+      spec:
+        storageClassName: standard
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5G
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+spec:
+  clusterIP: None # headless service
+  selector:
+    app-label: mongodb-stateful-set
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
