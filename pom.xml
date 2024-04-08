@@ -16,6 +16,7 @@
   <modules>
     <module>docker-containerization</module>
     <module>kubernetes-orchestration</module>
+    <module>kubernetes-deloyment</module>
   </modules>
 
 </project>

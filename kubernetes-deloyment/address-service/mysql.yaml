@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    cap_add:
+      - SYS_NICE
+    environment:
+      MYSQL_DATABASE: "address"
+      MYSQL_USER: "address_user"
+      MYSQL_PASSWORD: "address_password"
+      MYSQL_ROOT_PASSWORD: "Sashank@1991"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./src/test/resources/data:/docker-entrypoint-initdb.d/

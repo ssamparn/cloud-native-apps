@@ -5,6 +5,10 @@
     <file url="file://$PROJECT_DIR$/docker-containerization/job-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/docker-containerization/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/docker-containerization/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes-deloyment/address-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes-deloyment/employee-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes-deloyment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes-deloyment/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kubernetes-orchestration/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kubernetes-orchestration/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
