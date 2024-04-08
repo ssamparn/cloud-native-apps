@@ -21,7 +21,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 public class AddressEntity {
 
     @Id
@@ -29,11 +28,20 @@ public class AddressEntity {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "house_number")
+    private Integer houseNumber;
+
+    @Column(name = "street_name")
+    private String streetName;
+
     @Column(name = "city")
     private String city;
 
     @Column(name = "state")
     private String state;
+
+    @Column(name = "employee_id")
+    private Integer employeeId;
 
     @Override
     public final boolean equals(Object o) {

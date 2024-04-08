@@ -4,3 +4,11 @@ server:
 spring:
   application:
     name: employee-service
+  data:
+    mongodb:
+      uri: mongodb://employee_user:employee_password@localhost:27017/employee
+      authentication-database: admin
+
+address:
+  service:
+    url: http://localhost:8081/address
