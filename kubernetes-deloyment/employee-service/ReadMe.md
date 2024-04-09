@@ -10,19 +10,21 @@ $ docker push ssamantr/employee-service:1.0.0
 $ kubectl create deployment employee-app --image=ssamantr/employee-service:1.0.0
 ```
 
+#### Access a deployment with port-forward or as a LoadBalancer
+```bash
+$ kubectl expose deployment employee-app --type=LoadBalancer --port=8080
+$ kubectl port-forward <pod-name> 8080:8080
+$ kubectl port-forward <deployment-name> 8080:8080
+```
+> kubectl expose deployment will create a k8s service of provided type
+> kubectl port-forward can work on an individual pod or on a deployment
+
 #### Scale a deployment
 ```bash
 $ kubectl scale deployment employee-app --replicas=3
 $ kubectl get replicasets
 $ kubectl describe <replica-set-name>
 ```
-
-#### Access a deployment with port-forward or as a LoadBalancer
-```bash
-$ kubectl port-forward pod/employee-app-7b79fffd4b-hskln 8080:8080
-$ kubectl expose deployment employee-app --type=LoadBalancer --port=8080
-```
-> kubectl expose deployment will create a k8s service of provided type
 
 #### Fetch all the events and resources inside a k8s cluster
 ```bash
@@ -78,6 +80,7 @@ $ kubectl delete <resource-name>
 
 #### Set an image to a deployment
 ```bash
+$ docker push ssamantr/employee-service:2.0.0
 $ kubectl get replicasets -o wide
 $ kubectl set image deployment <deployment-name> <container-name>=<new-image-name>
 $ kubectl set image deployment employee-app employee-service=ssamantr/employee-service:2.0.0
