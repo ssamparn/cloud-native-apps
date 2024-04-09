@@ -33,8 +33,9 @@ public class EmployeeServiceHandler {
     public Mono<ServerResponse> getAllEmployees(ServerRequest serverRequest) {
         EmployeeResponse employeeResponse1 = EmployeeResponse.create(50882, "Sashank", "sashank1703@gmail.com", "32", null);
         EmployeeResponse employeeResponse2 = EmployeeResponse.create(50883, "Aparna", "aparna.samal7@gmail.com", "30", null);
+        EmployeeResponse employeeResponse3 = EmployeeResponse.create(50884, "Monalisa", "monalisa.samantray11@gmail.com", "34", null);
 
-        Flux<EmployeeResponse> employeeResponseFlux = Flux.fromIterable(Arrays.asList(employeeResponse1, employeeResponse2));
+        Flux<EmployeeResponse> employeeResponseFlux = Flux.fromIterable(Arrays.asList(employeeResponse1, employeeResponse2, employeeResponse3));
 
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
