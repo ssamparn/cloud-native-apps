@@ -4,6 +4,11 @@ $ docker compose -f kubernetes-deloyment/docker-compose.yaml up mongodb
 ```
 > Launch Robo 3T
 
+#### Check statuses of several k8s components
+```bash
+$ kubectl get componentstatuses
+```
+
 #### Create employee service deployment
 ```bash
 $ docker push ssamantr/employee-service:1.0.0
@@ -83,6 +88,7 @@ $ kubectl delete <resource-name>
 $ docker push ssamantr/employee-service:2.0.0
 $ kubectl get replicasets -o wide
 $ kubectl set image deployment <deployment-name> <container-name>=<new-image-name>
+$ kubectl set image deployment employee-app employee-service=ssamantr/employee-service:1.0.0
 $ kubectl set image deployment employee-app employee-service=ssamantr/employee-service:2.0.0
 ```
-> kubectl set image will create a new replicaset
+> kubectl set image will create a new replicaset. The new image will be bound to the new replica set. A new pod will be created. 
