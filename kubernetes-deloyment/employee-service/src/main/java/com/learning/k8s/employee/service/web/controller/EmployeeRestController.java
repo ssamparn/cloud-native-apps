@@ -22,7 +22,7 @@ public class EmployeeRestController {
         return employeeService.getEmployeeById(employeeId);
     }
 
-    @GetMapping("/employees/version")
+    @GetMapping("/employees/get-version")
     public Mono<AppVersion> getVersion() {
         return Mono.just(AppVersion.create("v1"));
     }
