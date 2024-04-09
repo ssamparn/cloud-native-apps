@@ -24,6 +24,6 @@ public class EmployeeRestController {
 
     @GetMapping("/employees/version")
     public ResponseEntity<AppVersion> getVersion() {
-        return new ResponseEntity<>(AppVersion.create("v1"), HttpStatus.OK);
+        return new ResponseEntity<>(AppVersion.create("v2"), HttpStatus.OK);
     }
 }
