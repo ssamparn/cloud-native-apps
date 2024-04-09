@@ -23,7 +23,7 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/employees/version")
-    public ResponseEntity<AppVersion> getVersion() {
-        return new ResponseEntity<>(AppVersion.create("v1"), HttpStatus.OK);
+    public Mono<AppVersion> getVersion() {
+        return Mono.just(AppVersion.create("v1"));
     }
 }
