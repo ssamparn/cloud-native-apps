@@ -1,8 +1,14 @@
-#### Create MySql Database instance
+#### Create Mongo Database instance
 ```bash
+$ docker compose -f kubernetes-deloyment/docker-compose.yaml up
 $ docker compose -f kubernetes-deloyment/docker-compose.yaml up mongodb
 ```
 > Launch Robo 3T
+
+#### Check k8s cluster information
+```bash
+$ kubectl cluster-info
+```
 
 #### Check statuses of several k8s components
 ```bash
@@ -67,12 +73,14 @@ $ kubectl get events
 $ kubectl get events --sort-by=.metadata.creationTimestamp
 ```
 
-#### Fetch all the pods inside a k8s cluster
+#### Fetch all the pods inside a k8s cluster across all namespaces
 ```bash
 $ kubectl get pods
 $ kubectl get pods -o wide
 $ kubectl get pods -o yaml
 $ kubectl get pods -o json
+$ kubectl get pods --all-namespaces
+$ kubectl get pods -l app-label=employee-app
 ```
 
 #### Explain a k8s resource
@@ -93,18 +101,23 @@ $ kubectl describe <resource-kind> <resource-name>
 ```bash
 $ kubectl get replicasets
 $ kubectl get rs
+$ kubectl get rs --all-namespaces
 ```
 
 #### Fetch all the deployments inside a k8s cluster
 ```bash
 $ kubectl get deployments
 $ kubectl get deploy
+$ kubectl get deployments --all-namespaces --sort-by=.spec.replicas
+$ kubectl get deployments --all-namespaces
 ```
 
 #### Fetch all the services inside a k8s cluster
 ```bash
 $ kubectl get services
 $ kubectl get svc
+$ kubectl get services --all-namespaces
+$ kubectl get services --all-namespaces --sort-by=.metadata.name
 ```
 > Note: You can use either singular or plural to get all the resources
 

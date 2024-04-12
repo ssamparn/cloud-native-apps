@@ -9,3 +9,4 @@ create table `address` (
 
 insert into `address` (`house_number`, `street_name`, `city`, `state`, `employee_id`) values (523, 'Neuweg', 'Hilversum', 'North Holland', 50882);
 insert into `address` (`house_number`, `street_name`, `city`, `state`, `employee_id`) values (254, 'United Highlands', 'Bengaluru', 'Karnataka', 50883);
+insert into `address` (`house_number`, `street_name`, `city`, `state`, `employee_id`) values (354, 'United Highlands', 'Bengaluru', 'Karnataka', 50884);

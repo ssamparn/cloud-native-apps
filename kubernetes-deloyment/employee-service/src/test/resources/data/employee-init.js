@@ -29,5 +29,11 @@ db.employee.insertMany([
        name: 'Aparna',
        email: 'aparna.samal7@gmail.com',
        age: '30'
+    },
+    {
+       _id: 50884,
+       name: 'Monalisa',
+       email: 'monalisa.samantray11@gmail.com',
+       age: '34'
     }
 ]);
