@@ -20,6 +20,7 @@ $ kubectl create deployment employee-app --image=ssamantr/employee-service:1.0.0
 $ kubectl expose deployment employee-app --type=LoadBalancer --port=8080
 $ kubectl port-forward <pod-name> 8080:8080
 $ kubectl port-forward <deployment-name> 8080:8080
+$ kubectl port-forward <service-name> 8080:8080
 ```
 > kubectl expose deployment will create a k8s service of provided type
 > kubectl port-forward can work on an individual pod, on a deployment and also on a service.
@@ -130,7 +131,15 @@ $ kubectl get service employee-app -o yaml > service.yaml
 ```bash
 $ kubectl apply -f kubernetes-deloyment/k8s/employee-service.yaml
 $ kubectl delete -f kubernetes-deloyment/k8s/employee-service.yaml
+$ kubectl apply -f kubernetes-deloyment/k8s/multiple-employee-service.yaml
+$ kubectl delete -f kubernetes-deloyment/k8s/multiple-employee-service.yaml
 ```
+
+#### Find the difference between 2 k8s deployment
+```bash
+$ kubectl diff -f kubernetes-deloyment/k8s/employee-service.yaml
+```
+> Works like `git diff`. Helpful for debugging
 
 #### Delete a/all k8s resource and/or with a specific label
 ```bash

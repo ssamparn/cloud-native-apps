@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: employee-service
-          image: ssamantr/employee-service:1.0.0
+          imagePullPolicy: Always
+          image: ssamantr/employee-service:2.0.0
           ports:
             - name: "employee-port"
               containerPort: 8080
@@ -48,6 +49,8 @@ metadata:
 spec:
   selector:
     app-label: employee-app
+  sessionAffinity: None
   ports:
-    - port: 8080
+    - protocol: TCP
+      port: 8080
       targetPort: 8080

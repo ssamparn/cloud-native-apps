@@ -1,0 +1,116 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-app-v1
+  labels:
+    app-label: employee-app
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app-label: employee-app
+      version: v1
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app-label: employee-app
+        version: v1
+    spec:
+      containers:
+        - name: employee-service
+          imagePullPolicy: Always
+          image: ssamantr/employee-service:1.0.0
+          ports:
+            - name: "employee-port"
+              containerPort: 8080
+          env:
+            - name: "address.service.url"
+              value: "http://localhost:8081/address"
+          startupProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            periodSeconds: 2
+            failureThreshold: 35
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 2000m
+              memory: 2000Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-app-v2
+  labels:
+    app-label: employee-app
+    version: v2
+spec:
+  selector:
+    matchLabels:
+      app-label: employee-app
+      version: v2
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app-label: employee-app
+        version: v2
+    spec:
+      containers:
+        - name: employee-service
+          imagePullPolicy: Always
+          image: ssamantr/employee-service:2.0.0
+          ports:
+            - name: "employee-port"
+              containerPort: 8080
+          env:
+            - name: "address.service.url"
+              value: "http://localhost:8081/address"
+          startupProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            periodSeconds: 2
+            failureThreshold: 35
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 2000m
+              memory: 2000Mi
+
+# To actually witness the load balanced behavior of k8s service, deploy this to a cloud k8s engine.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service
+  labels:
+    app-label: employee-app
+spec:
+  selector:
+    app-label: employee-app
+    version: v2
+  type: LoadBalancer
+  sessionAffinity: None
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
