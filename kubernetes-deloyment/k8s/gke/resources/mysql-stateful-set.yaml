@@ -1,0 +1,57 @@
+# To run the actual sql instance, we are creating a k8s stateful set
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-stateful-set
+spec:
+  serviceName: mysql
+  selector:
+    matchLabels:
+      app-label: mysql-stateful-set
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app-label: mysql-stateful-set
+    spec:
+      containers:
+        - name: mysql-stateful-set
+          imagePullPolicy: Always
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-data-volume
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+          envFrom:
+            - secretRef:
+                name: mysql-root-secrets
+      volumes:
+        - name: mysql-data-volume
+          configMap:
+            name: mysql-init
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-storage
+      spec:
+        storageClassName: standard
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5G
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  clusterIP: None # headless service
+  selector:
+    app-label: mysql-stateful-set
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

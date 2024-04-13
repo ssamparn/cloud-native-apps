@@ -1,0 +1,41 @@
+# To initialize data into mongo container, we are creating a k8s configMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-init
+data:
+  job-init.js: |
+    db = db.getSiblingDB('employee');
+    db.createUser({
+      user: 'employee_user',
+      pwd: 'employee_password',
+      roles:[
+        {
+          role: 'readWrite',
+          db: 'employee'
+        }
+      ]
+    });
+    db.createCollection('employee');
+    db.employee.insertMany(
+      [
+        {
+          _id: 50882,
+          name: 'Sashank',
+          email: 'sashank1703@gmail.com',
+          age: '32'
+        },
+        {
+          _id: 50883,
+          name: 'Aparna',
+          email: 'aparna.samal7@gmail.com',
+          age: '30'
+        },
+        {
+          _id: 50884,
+          name: 'Monalisa',
+          email: 'monalisa.samantray11@gmail.com',
+          age: '34'
+        }
+      ]
+    );

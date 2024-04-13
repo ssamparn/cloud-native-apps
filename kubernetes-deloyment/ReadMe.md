@@ -128,6 +128,13 @@ $ kubectl logs <resource-id> -f
 $ kubectl logs deployment.apps/employee-app -f
 ```
 
+#### Get ingress gateway
+```bash
+$ kubectl get ingress
+$ kubectl get ing
+$ kubectl describe ing api-gateway
+```
+
 #### Create `deployment.yaml` from a specific deployment
 ```bash
 $ kubectl get deployment <deployment-name> -o yaml > deployment.yaml
@@ -178,6 +185,7 @@ $ echo -n "Sashank@1991" | base64
 #### Address Service: k8s Deployment 
 ```bash
 $ kubectl apply -f kubernetes-deloyment/k8s/address-service/.
+$ kubectl delete -f kubernetes-deloyment/k8s/address-service/.
 `or`
 $ kubectl apply -f kubernetes-deloyment/k8s/address-service/address-secrets.yaml
 $ kubectl apply -f kubernetes-deloyment/k8s/address-service/mysql-init-config-map.yaml
@@ -188,9 +196,41 @@ $ kubectl apply -f kubernetes-deloyment/k8s/address-service/address-service.yaml
 #### Employee Service: k8s Deployment
 ```bash
 $ kubectl apply -f kubernetes-deloyment/k8s/employee-service/.
+$ kubectl delete -f kubernetes-deloyment/k8s/employee-service/.
 `or`
 $ kubectl apply -f kubernetes-deloyment/k8s/employee-service/employee-secrets.yaml
 $ kubectl apply -f kubernetes-deloyment/k8s/employee-service/mongo-init-config-map.yaml
 $ kubectl apply -f kubernetes-deloyment/k8s/employee-service/mongo-stateful-set.yaml
 $ kubectl apply -f kubernetes-deloyment/k8s/employee-service/employee-service.yaml
+```
+
+#### k8s Deployment
+```bash
+$ kubectl apply -f kubernetes-deloyment/k8s/gke/resources/.
+$ kubectl delete -f kubernetes-deloyment/k8s/gke/resources/.
+```
+
+### Google Cloud Services: k8s Deployment
+
+#### GKE k8s Cluster Details
+
+> Cluster Name: k8s-cluster
+> Location Type: Zonal
+> Zone: us-central1-c
+
+##### Connect to GKE k8s Cluster
+```bash
+$ gcloud container clusters get-credentials k8s-cluster --zone us-central1-c --project spring-microservices-350123
+$ kubectl get nodes
+$ kubectl top nodes
+```
+
+> Open cloud shell editor.
+> Goto File --> Open Folder --> `/home/sashank1703` 
+> Create a directory `k8s-deployment`
+> Upload all the yaml files which are present in gke directory into it.
+> 
+```bash
+$ kubectl apply -f k8s-deployment/.
+$ kubectl delete -f k8s-deployment/.
 ```
