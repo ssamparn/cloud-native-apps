@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: employee-app
+  labels:
+    app-label: employee-app
 spec:
   selector:
     matchLabels:
@@ -49,6 +51,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: employee-service
+  labels:
+    app-label: employee-app
 spec:
   selector:
     app-label: employee-app
