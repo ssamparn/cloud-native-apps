@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: address-app
+spec:
+  selector:
+    matchLabels:
+      app-label: address-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app-label: address-app
+    spec:
+      containers:
+        - name: address-app
+          imagePullPolicy: Always
+          image: ssamantr/address-service:1.0.0
+          ports:
+            - name: "address-port"
+              containerPort: 8081
+          envFrom:
+            - secretRef:
+                name: address-db-secrets
+          startupProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8081
+            periodSeconds: 2
+            failureThreshold: 35
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8081
+            periodSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 2000m
+              memory: 2000Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: address-service
+spec:
+  selector:
+    app-label: address-app
+  sessionAffinity: None
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081

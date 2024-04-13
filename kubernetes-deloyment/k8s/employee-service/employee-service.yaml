@@ -6,22 +6,25 @@ spec:
   selector:
     matchLabels:
       app-label: employee-app
-  replicas: 5
+  replicas: 1
   template:
     metadata:
       labels:
         app-label: employee-app
     spec:
       containers:
-        - name: employee-service
+        - name: employee-app
           imagePullPolicy: Always
-          image: ssamantr/employee-service:2.0.0
+          image: ssamantr/employee-service:1.0.0
           ports:
             - name: "employee-port"
               containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: employee-db-secrets
           env:
             - name: "address.service.url"
-              value: "http://localhost:8081/address"
+              value: "http://address-service:8081/address"
           startupProbe:
             httpGet:
               path: /actuator/health/liveness
