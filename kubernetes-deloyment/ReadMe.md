@@ -234,3 +234,40 @@ $ kubectl top nodes
 $ kubectl apply -f k8s-deployment/.
 $ kubectl delete -f k8s-deployment/.
 ```
+
+### AWS: k8s Deployment
+
+> Create IAM Group and User
+> Group: `ssamparn`
+> User: `aws-k8s-user`
+> Install AWS CLI
+> k8s Cluster Name: `k8s-cluster`
+> EKS Cluster Role: `k8s-cluster-role`. Create the cluster with this role
+
+> References: https://www.youtube.com/watch?v=DcnviAwmzM4
+> References: https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+
+```bash
+$ which aws
+$ aws --version
+$ aws configure
+> Install kubectl with curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/darwin/amd64/kubectl
+$ kubectl version --client
+$ aws eks update-kubeconfig --region us-east-1 --name k8s-cluster
+$ aws eks --region us-east-1 describe-cluster --name k8s-cluster --query cluster.status
+$ kubectl get svc
+```
+
+> Create Node group: `k8s-ng`
+> Create a role: `k8s-node-group-role` and attach 3 policies. `AmazonEC2ContainerRegistryReadOnly`, `AmazonEKS_CNI_Policy`, `AmazonEKSWorkerNodePolicy`
+> Create the worker node group with this role.
+
+```bash
+$ kubectl get nodes
+```
+
+#### k8s Deployment
+```bash
+$ kubectl apply -f kubernetes-deloyment/k8s/eks/resources/.
+$ kubectl delete -f kubernetes-deloyment/k8s/eks/resources/.
+```
