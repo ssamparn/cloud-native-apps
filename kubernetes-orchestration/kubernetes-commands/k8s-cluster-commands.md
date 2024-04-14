@@ -38,6 +38,22 @@ $ docker ps
 $ kubectl get node
 ```
 
+#### Install Istio in a single node kind cluster
+```bash
+$ brew install istioctl
+$ brew install helm
+$ sh setup.sh
+$ kubectl get pods --namespace=istio-system
+
+```
+
+> References: 
+- https://www.danielstechblog.io/local-kubernetes-setup-with-kind/
+- https://www.danielstechblog.io/running-istio-on-kind-kubernetes-in-docker/
+- https://istio.io/latest/docs/ops/diagnostic-tools/istioctl/
+- https://medium.com/@s4l1h/how-to-install-kind-and-istio-ingress-controller-3b510834c762
+- https://github.com/neumanndaniel/kubernetes/blob/master/kind/setup.sh
+
 #### Check the configuration of the K8S cluster created by kind
 ```bash
 $ cat ~/.kube/config
