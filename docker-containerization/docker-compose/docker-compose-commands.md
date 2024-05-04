@@ -4,7 +4,7 @@
 ```bash
 $ docker compose up
 $ docker compose -f a/b/c/docker-compose-file.yml up
-$ docker compose -f docker-containerization/docker-compose/simple-nginx/docker-compose.yml up
+$ docker compose -f docker-containerization/docker-compose/docker-compose-simple/docker-compose.yml up
 ```
 
 #### To spin up all the containers in detached mode
@@ -22,7 +22,7 @@ $ docker compose ps
 ```bash
 $ docker compose down
 $ docker compose -f a/b/c/docker-compose-file.yml down
-$ docker compose -f docker-containerization/docker-compose/simple-nginx/docker-compose.yml down
+$ docker compose -f docker-containerization/docker-compose/docker-compose-simple/docker-compose.yml down
 ```
 
 #### To check the service logs for debugging
