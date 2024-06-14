@@ -12,6 +12,49 @@ $ docker compose -f docker-containerization/docker-compose/docker-compose-simple
 $ docker compose up -d
 ```
 
+#### Docker Compose Volume Mapping
+```bash
+$ docker compose -f docker-containerization/docker-compose/docker-compose-volume-mapping/docker-compose.yml up
+$ curl http://localhost:8080/
+```
+
+#### Docker Compose Network
+```bash
+$ docker compose -f docker-containerization/docker-compose/docker-compose-network/docker-compose.yml up
+$ curl http://localhost:8080/
+```
+
+#### Docker Compose: Container Environment Variable
+```bash
+$ docker run ubuntu env
+$ docker run -e INPUT=55 ubuntu env
+$ docker compose -f docker-containerization/docker-compose/docker-container-env-variables/docker-compose.yml up
+$ docker compose -f docker-containerization/docker-compose/docker-container-env-variables/docker-compose.yml down
+```
+
+#### Docker Compose: Passing Environment Variable
+```bash
+$ docker compose -f docker-containerization/docker-compose/docker-compose-environment-variable/docker-compose.yml up
+$ export TAG=perl
+$ docker images
+$ docker compose -f docker-containerization/docker-compose/docker-compose-environment-variable/docker-compose.yml up
+$ docker images
+$ docker compose -f docker-containerization/docker-compose/docker-compose-environment-variable/docker-compose.yml down
+```
+
+#### Docker Compose: Mongo-Express
+```bash
+$ docker compose -f docker-containerization/docker-compose/docker-compose-mongoexpress/docker-compose.yml up
+$ docker compose -f docker-containerization/docker-compose/docker-compose-mongoexpress/docker-compose.yml down
+```
+
+#### Docker Compose: Postgres
+```bash
+$ docker compose -f docker-containerization/docker-compose/docker-compose-postgres/docker-compose.yml up
+$ docker compose -f docker-containerization/docker-compose/docker-compose-postgres/docker-compose.yml down
+```
+> Note: Provide localhost as `hostname` in pgAdmin tool.
+
 #### To check service status
 ```bash
 $ cd to-directory-where-docker-compose-file-is-placed
