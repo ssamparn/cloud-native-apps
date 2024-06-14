@@ -3,6 +3,7 @@
 #### Remove unused data
 ```bash
 $ docker system prune [--all] [--filter] [--force] [--volumes]
+$ docker system prune -af
 ```
 
 #### To show the list of images you have in your machine
@@ -23,6 +24,7 @@ $ docker pull <image-name>
 #### To run hello-world image from Dockerhub
 ```bash
 $ docker pull hello-world
+$ docker images
 $ docker run hello-world
 ```
 > Docker run does a pull also before running the downloaded image.
@@ -30,7 +32,11 @@ $ docker run hello-world
 #### To run ubuntu image from Dockerhub
 ```bash
 $ docker pull ubuntu
+$ docker images
 $ docker run ubuntu
+$ docker ps -a
+$ docker run ubuntu ls
+$ docker run ubuntu date
 $ docker run -it ubuntu bash
 ```
 
@@ -62,6 +68,15 @@ $ docker run ubuntu ls
 ```bash
 $ docker run -it <image-name>
 $ docker run -it ubuntu
+$ ls
+$ mkdir sashank
+$ ls
+$ cd sashank/
+$ pwd
+$ echo "docker is awesome" > dummy.txt
+$ ls -al
+$ cat dummy.txt
+$ exit
 ```
 > `i` stands for `standard-input` & `t` stands for `standard-output` 
 > Running containers in interactive mode is almost doing ssh into the running container.
@@ -74,25 +89,33 @@ $ docker run -d -p 7079:80 nginx
 
 #### To assign a name for your container
 ```bash
-$ docker run -name=<name-you-want-to-give> <image-name>
-$ docker run -name=sam-ubuntu ubuntu
+$ docker run -it --name=<name-you-want-to-give> <image-name>
+$ docker run -it --name=sam-ubuntu ubuntu
 ```
 
 #### To start a container (in interactive mode)
 ```bash
-$ docker start <container-name>
-$ docker start -ia <container-name>
+$ docker start <container-name/id>
+$ docker start -ia <container-name/id>
+$ cd sashank/
+$ cat dummy.txt
+$ exit
+$ docker system prune -f
 ```
 
 #### To stop a running container
 ```bash
+$ docker run -it --name=sam-ubuntu ubuntu
+$ docker ps
 $ docker stop <container-name/id>
+$ docker stop sam-ubuntu
 ```
 > Stopping a running container might take some time.
 
 #### To kill a running container.
 ```bash
 $ docker kill <container-name/id>
+$ docker kill sam-ubuntu
 ```
 > Killing a running container will stop the container at once with a `SIGKILL`
 
@@ -103,9 +126,17 @@ $ docker rm <container-name/id>
 
 #### To start/execute a command in a running container (in interactive mode)
 ```bash
+# in one terminal
+$ docker run -it --name=sam-ubuntu ubuntu
 $ docker exec -it <container-name/id> <command>
 $ docker exec -it <container-name/id> <command>
-$ docker exec -it obu bash
+
+# in another terminal
+$ docker exec -it sam-ubuntu bash
+# or
+$ docker exec sam-ubuntu date
+# or
+$ docker exec sam-ubuntu ls
 ```
 > `docker run` creates new container and executes the command, but `docker exec` does the similar thing on a running container.
 
@@ -117,19 +148,44 @@ $ docker exec -it obu bash
 + Default for `username` is `library`. 
 + Default for `tag` is `latest`
 
+```bash
+$ docker system prune -f
+$ docker pull hello-world
+```
+
 ### Docker Port Mapping: Map Host Port to a Container Port
+
+#### Create nginx container
+```bash
+$ docker system prune -f
+$ docker images
+$ docker pull nginx
+$ docker images
+# ubuntu container will exit immediately, as ubuntu is an operating system
+$ docker run ubuntu
+# however, nginx container will not exit immediately, as it is a server. It's job is to run indefinitely. 
+$ docker run nginx
+# curl in host without accessing nginx container. Should not work.
+$ curl http://localhost
+$ docker exec -it <container-name/id> bash
+# curl in nginx container after accessing it. It should work
+$ curl http://localhost
+```
 
 #### To map the host port to a container port
 ```bash
 $ docker run -p <host-port>:<container-port> <image-name>
 $ docker run -p 8080:80 nginx
+$ curl http://localhost:8080
 $ docker run -p 8090:80 nginx
+$ curl http://localhost:8090
 ```
 
 #### To map the host port to a container port in detached mode
 ```bash
 $ docker run -d -p <host-port>:<container-port> <image-name>
 $ docker run -d -p 7070:80 nginx
+$ curl http://localhost:7070
 ```
 
 #### To map multiple host ports to multiple container ports
@@ -162,7 +218,8 @@ $ docker run
 #### Docker volume mapping: nginx
 ```bash
 $ docker run --name <some-name> -v /some/content:/usr/share/nginx/html:ro -d nginx
-$ docker run -p 8080:80 --name sam-server -v $PWD:/usr/share/nginx/html -d nginx
+$ docker run -p 8080:80 --name sam-server -v $PWD/docker-containerization/docker-resources/index.html:/usr/share/nginx/html/index.html -d nginx
+$ curl http://localhost:8080
 ```
 > Here we are mounting the current directory ($PWD) to /usr/share/nginx/html directory.
 
@@ -202,8 +259,8 @@ $ docker network ls
 
 #### Create a Docker Container inside a particular network
 ```bash
-$ docker run --name=<container-name> --network <network-name> <image-name>
-$ docker run --name=sam-nginx --network dummy nginx
+$ docker run --name=<container-name> --network=<network-name> <image-name>
+$ docker run --name=sam-nginx --network=dummy nginx
 ```
 
 ## Docker File: Commands
@@ -227,24 +284,34 @@ $ docker build . -t ubuntu-helloworld-image -f docker-containerization/docker-fi
 ```
 #### Run the newly created docker image
 ```bash
-$ docker run -it <image-nam>
+$ docker images
+$ docker run -it <image-name>
+$ docker run -it ubuntu-helloworld-image
+$ docker run -it ubuntu-helloworld-image bash
+$ ls
+$ cat welcome.txt
+$ exit
 ```
 
 #### Install Java in an Ubuntu image
 ```bash
 $ docker build . -t <image-name-you-want-to-provide> -f <directory/sub-directory/Dockerfile>
 $ docker build . -t ubuntu-java-image -f docker-containerization/docker-files/java-install-dockerfile
+$ docker run -it ubuntu-java-image bash
+$ ls
+$ java -version
 ```
 
 #### Run a Java program in an Ubuntu image
 ```bash
-$ docker build . -t ubuntu-java-image -f docker-containerization/docker-files/java-table-program-dockerfile
+$ docker build . -t java-table-image -f docker-containerization/docker-files/java-table-program-dockerfile
+$ docker run -it java-table-image bash
 ```
 
 #### Pass an environment variable in to the docker container
 ```bash
 $ docker run -e <ENV-VAR-NAME>=<ENV-VAL> <image-name>
-$ docker run -e input=13 ubuntu-java-image
+$ docker run -e input=13 java-table-image
 ```
 
 #### Docker Command in Shell Form Vs Exec Form:
