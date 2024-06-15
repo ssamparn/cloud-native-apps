@@ -12,6 +12,7 @@ import java.util.Set;
 
 @SpringBootTest
 @AutoConfigureWebTestClient
+// Both generic and compose version of BaseTest works fine
 public class JobServiceIT extends BaseTest {
 
 	@Autowired
