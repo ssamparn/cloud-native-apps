@@ -6,6 +6,7 @@
 ```bash
 $ brew install kubectl
 ```
+> During installation, Homebrew create a directory `kubectl` in `/usr/local/bin/kubectl`
 
 #### Check the (k8s) client installation
 ```bash
