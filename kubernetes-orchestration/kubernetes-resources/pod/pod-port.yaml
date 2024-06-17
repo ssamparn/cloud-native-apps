@@ -9,3 +9,4 @@ spec:
       ports:
         - name: "web-port"
           containerPort: 80
+          protocol: TCP
