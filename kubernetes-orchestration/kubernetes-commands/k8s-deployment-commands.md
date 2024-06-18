@@ -138,4 +138,7 @@ $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/deployment/appl
 # Port-Forward
 $ kubectl port-forward deployment.apps/application-assignment 8080:8080
 $ curl http://localhost:8080/
+
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/deployment/redis-deployment.yaml
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/deployment/application-assignment.yaml
 ```

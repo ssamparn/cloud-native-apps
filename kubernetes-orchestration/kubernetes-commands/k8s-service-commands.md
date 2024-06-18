@@ -2,6 +2,13 @@
 
 > Prerequisite: Before creating a k8s Service, we assume a k8s cluster and k8s deployment with some pods in it are created already.
 
+#### Create a Service
+```bash
+$ kubectl create -f kubernetes-orchestration/kubernetes-resources/service/simple-service.yaml
+$ kubectl describe service my-web-service
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/simple-service.yaml
+```
+
 #### Get all the services
 ```bash
 $ kubectl get <kind>
@@ -13,7 +20,8 @@ $ kubectl get service
 ```bash
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/service/service-load-balancing.yaml
 $ kubectl exec -it pod/my-pod -- bash
-$ curl http://my-app:8080
+$ curl http://my-service:8080
+$ exit
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/service-load-balancing.yaml
 ```
 
@@ -21,6 +29,7 @@ $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/servic
 ```bash
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/service/redis-assignment.yaml
 $ kubectl port-forward deployment.apps/application-assignment 8080:8080
+$ curl http://localhost:8080/
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/service/redis-assignment.yaml
 ```
 
