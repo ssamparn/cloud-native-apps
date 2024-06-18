@@ -20,6 +20,6 @@ spec:
               name: "app-port"
           env:
             - name: "spring.redis.host"
-              value: "10.244.1.20" # Not the best solution. spring redis host is fetched after deploying redis locally using redis-deployment.yaml. Then $ kubectl get pod -o wide command was issued
+              value: "10.244.2.28" # Not the best solution. spring redis host is fetched after deploying redis locally using redis-deployment.yaml. Then $ kubectl get pod -o wide command was issued
             - name: "spring.redis.port"
               value: "6379"

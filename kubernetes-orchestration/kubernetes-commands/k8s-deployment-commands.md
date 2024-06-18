@@ -10,7 +10,7 @@ $ kubectl get all
 #### Get all the deployments
 ```bash
 $ kubectl get <kind>
-$ kubectl get deployment
+$ kubectl get deployments
 ```
 
 #### Get a specific deployment
@@ -22,14 +22,16 @@ $ kubectl get deployment deployment-name
 #### Create a deployment
 ```bash
 $ kubectl create -f kubernetes-orchestration/kubernetes-resources/deployment/simple-deployment.yaml
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/deployment/simple-deployment.yaml
 ```
+> Note: Difference between `create` and `apply`: If the resource exists, `$ kubectl create` will error out and `$ kubectl apply` will not error out.
 
 #### Delete a deployment
 ```bash
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/deployment/simple-deployment.yaml
 ```
 
-#### Delete a particular pod
+#### Delete a particular deployment
 ```bash
 $ kubectl delete deployment <deployment-name>
 $ kubectl delete deployment my-deployment
@@ -91,11 +93,17 @@ $ kubectl exec -it deployment/my-deployment -- bash
 ```bash
 $ kubectl port-forward [kind]/[deployment-name] <host-port:container-port>
 $ kubectl port-forward deployment/my-deployment 8080:80
+$ curl http://localhost:8080/
 ```
 
 #### Show the rollout revision history of a deployment
 ```bash
+# deploy-rollout.yaml
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/deployment/deploy-rollout.yaml
+$ kubectl port-forward deployment/order-service-deployment 8080:80
+$ curl http://localhost:8080/
 $ kubectl rollout history deploy
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/deployment/deploy-rollout.yaml
 ```
 
 #### Rollout a deployment (application) to a previous version of deployment (application)
@@ -116,4 +124,18 @@ $ kubectl rollout undo deployment/order-service-deployment --to-revision=5
 ```bash
 $ kubectl rollout history deploy --revision=<revision-number>
 $ kubectl rollout history deploy --revision=1
+```
+
+#### Assignment
+```bash
+# create redis deployment
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/deployment/redis-deployment.yaml
+$ kubectl get pod -o wide
+
+# Fetch the IP address of Redis
+$ kubectl apply -f kubernetes-orchestration/kubernetes-resources/deployment/application-assignment.yaml
+
+# Port-Forward
+$ kubectl port-forward deployment.apps/application-assignment 8080:8080
+$ curl http://localhost:8080/
 ```
