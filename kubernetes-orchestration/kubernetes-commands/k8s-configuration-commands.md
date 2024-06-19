@@ -24,6 +24,7 @@ $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/configuration/
 #### Inject configMap as environment variable `inject-configmap-as-env.yaml`
 ```bash
 $ kubectl create -f kubernetes-orchestration/kubernetes-resources/configuration/inject-configmap-as-env.yaml
+$ kubectl get configmaps
 $ kubectl describe cm application-properties
 $ kubectl logs pod/my-pod
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/configuration/inject-configmap-as-env.yaml
@@ -39,12 +40,8 @@ $ kubectl exec -it pod/my-pod -- bash
 $ cd usr/share/props/
 $ ls
 $ cat base64.crt
+$ exit
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/configuration/inject-configmap-as-file.yaml
-```
-
-#### Fetch k8s secrets
-```bash
-$ kubectl get secrets
 ```
 
 #### Create k8s secrets
@@ -54,6 +51,12 @@ $ kubectl get secrets
 $ kubectl get secrets -o yaml
 $ kubectl delete secret app-secret
 ```
+
+#### Fetch k8s secrets
+```bash
+$ kubectl get secrets
+```
+
 #### Create k8s secrets `simple-secret.yaml`
 ```bash
 $ echo -n sassaman | base64
@@ -90,7 +93,7 @@ $ echo -n root | base64
 $ echo -n rootpassword | base64
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/configuration/solution/.
 $ kubectl port-forward service/mongoexpress-service 8081:8081
-$ curl localhost:8081
+$ curl http://localhost:8081/
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/configuration/solution/.
 ```
 

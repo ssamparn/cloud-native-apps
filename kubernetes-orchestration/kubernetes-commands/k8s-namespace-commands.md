@@ -47,6 +47,10 @@ $ kubectl delete ns qa
 ```bash
 $ kubectl create ns dev
 $ kubectl create ns qa
+$ kubectl get ns
+
+$ watch -t -x kubectl get all -n dev
+$ watch -t -x kubectl get all -n qa
 
 > Run `version 1` of the application in `dev` namespace 
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/namespace/rolling-update-service.yaml -n dev
@@ -55,8 +59,14 @@ $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/namespace/rolli
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/namespace/rolling-update-service.yaml -n qa
 
 $ kubectl port-forward deployment.apps/order-service-deployment 8080:80 -n dev
+$ curl http://localhost:8080/
 > This will show `version 1` of the application
 
 $ kubectl port-forward deployment.apps/order-service-deployment 8080:80 -n qa
+$ curl http://localhost:8080/
 > This will show `version 2` of the application
+
+# clean up
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/namespace/rolling-update-service.yaml -n dev
+$ kubectl delete -f kubernetes-orchestration/kubernetes-resources/namespace/rolling-update-service.yaml -n qa
 ```
