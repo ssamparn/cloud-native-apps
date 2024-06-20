@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: my-pvc
 spec:
-  storageClassName: standard # Default Storage Class
+  storageClassName: standard # Default Storage Class. Do a $ kubectl get storageclass
   accessModes:
     - ReadWriteOnce
   resources:
