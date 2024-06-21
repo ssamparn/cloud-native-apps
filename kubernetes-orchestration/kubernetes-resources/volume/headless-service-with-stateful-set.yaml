@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: my-stateful-set
 spec:
+  serviceName: my-service # headless service
   selector:
     matchLabels:
       app-label: my-app
@@ -16,7 +17,6 @@ spec:
       containers:
         - name: nginx
           image: vinsdocker/nginx-gke
-  serviceName: my-service # headless service
 ---
 apiVersion: v1
 kind: Service

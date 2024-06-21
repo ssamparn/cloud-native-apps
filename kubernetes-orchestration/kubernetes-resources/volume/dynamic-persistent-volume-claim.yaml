@@ -24,7 +24,7 @@ spec:
           volumeMounts:
             - name: my-dynamic-pvc
               mountPath: /usr/share/nginx/html
-  volumeClaimTemplates:
+  volumeClaimTemplates: # volumeClaimTemplates is part of statefulSet only
     - metadata:
         name: my-dynamic-pvc
       spec:

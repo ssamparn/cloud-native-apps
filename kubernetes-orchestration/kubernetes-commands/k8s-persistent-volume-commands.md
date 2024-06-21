@@ -106,6 +106,8 @@ $ curl my-stateful-set-1.my-service
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/volume/headless-service-with-stateful-set.yaml
 ```
 
+Note: DNS entries are created for `<pod-name>`.`<service-name>`
+
 #### Attach a dynamic persistent volume claim to a k8s stateful set `dynamic-persistent-volume-claim.yaml`
 ```bash
 $ kubectl delete pvc --all
@@ -128,8 +130,8 @@ $ kubectl delete pvc --all
 $ kubectl apply -f kubernetes-orchestration/kubernetes-resources/volume/solution/.
 $ kubectl get pvc
 $ kubectl get pv
-$ kubectl port-forward service/mongoexpress-service 8080:8081
-$ curl localhost:8080
+$ kubectl port-forward service/mongoexpress-service 8081:8081
+$ curl http://localhost:8081/
 $ kubectl delete -f kubernetes-orchestration/kubernetes-resources/volume/solution/.
 $ kubectl get pvc
 $ kubectl get pv
