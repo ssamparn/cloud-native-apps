@@ -14,7 +14,8 @@ $ kubectl delete -f kubernetes-orchestration/kubernetes-assignment/.
 
 > If Ingress routing does not work then use port-forward to frontend pod.
 ```bash
-kubectl port-forward pod/frontend-app-5cdbdcd778-8xs6l 9090:80
+$ kubectl port-forward pod/frontend-app-7b744d47c5-r2mkh 9090:80
+$ curl http://localhost:9090/
 ```
 
 #### Mongo: 
