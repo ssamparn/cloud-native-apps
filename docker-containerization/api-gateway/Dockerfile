@@ -1,3 +1,4 @@
+# front-end service has been created from this docker file
 FROM nginx
 COPY /html/index.html /usr/share/nginx/html/index.html
 COPY /conf/nginx.conf /etc/nginx/nginx.conf
